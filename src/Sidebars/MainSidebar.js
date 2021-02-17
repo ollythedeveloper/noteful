@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function MainSidebar(folders, notes) {
-    console.log(folders)
-    console.log(notes)
     return (
         <>
             <ul className="MainSidebar">
