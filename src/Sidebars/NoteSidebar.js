@@ -1,5 +1,6 @@
 import React from 'react';
 import CircleButton from '../CircleButton/CircleButton';
+import './NoteSidebar.css';
 
 export default function NoteSidebar(props) {
     return(
@@ -8,7 +9,9 @@ export default function NoteSidebar(props) {
                 tag="button"
                 roles='link'
                 onClick={() => props.history.goBack()}
-                className="NoteSidebar__backButton" >
+                className="NoteSidebar__back-button" >
+                    {'<'}
+                    <br/>
                     Back
                 </CircleButton>
                 {props.folder && (

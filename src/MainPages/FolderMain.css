@@ -1,0 +1,18 @@
+.FolderMain ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+}
+  
+.FolderMain__button-container {
+    max-width: 380px;
+    margin: 0 10px;
+}
+  
+.FolderMain__add-note-button {
+    margin: 0 auto 20px;
+}
+.FolderMain__add-note-button:hover {
+    background-color: plum;
+    color: white;
+}

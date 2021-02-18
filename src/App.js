@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Header from './Header/Header';
-import MainSidebar from './Sidebars/MainSidebar';
 import FolderSidebar from './Sidebars/FolderSidebar';
 import NoteSidebar from './Sidebars/NoteSidebar';
 import './App.css'
