@@ -3,49 +3,64 @@ import { Route } from 'react-router-dom';
 import Header from './Header/Header';
 import FolderSidebar from './Sidebars/FolderSidebar';
 import NoteSidebar from './Sidebars/NoteSidebar';
-import './App.css'
-import STORE from './dummy-store';
 import FolderMain from './MainPages/FolderMain';
 import NotePageMain from './MainPages/NotePageMain';
-import {getNotesForFolder, findNote, findFolder} from './notes-helpers';
+import NotefulContext from './NotefulContext';
+import config from './config';
+// import { getNotesForFolder, findNote, findFolder } from './notes-helpers';
+import './App.css';
 
 class App extends Component {
   state = {
-    notes:[],
-    folders:[]
+    folders: [],
+    notes: [],
+  };
+
+  handleDeleteNote = noteId => {
+    const newNotes = this.state.notes.filter(note =>
+      note.id !== noteId
+    )
+    this.setState({
+      notes: newNotes
+    });
   };
 
   componentDidMount() {
-    this.setState(STORE)
+    Promise.all([
+      fetch(`${config.FOLDER_URL}`),
+      fetch(`${config.NOTE_URL}`)
+    ])
+      .then(([foldersRes, notesRes]) => {
+        if (!foldersRes.ok)
+          return foldersRes.json().then(e => Promise.reject(e));
+        if (!notesRes.ok)
+          return notesRes.json().then(e => Promise.reject(e));
+
+        return Promise.all([foldersRes.json(), notesRes.json()]);
+      })
+      .then(([folders, notes]) => {
+        this.setState({ folders, notes });
+      })
+      .catch(error => {
+        console.error({ error })
+      });
   }
 
   renderNavRoutes() {
-    const {notes, folders} = this.state;
-    return(
+    const { notes, folders } = this.state;
+    return (
       <>
-        {['/','/folder/:folderId'].map(path => (
+        {['/', '/folder/:folderId'].map(path => (
           <Route
             exact
             key={path}
             path={path}
-            render={routeProps => (
-              <FolderSidebar
-                folders={folders}
-                notes={notes}
-                {...routeProps}
-              />
-            )}
+            component={FolderSidebar}
           />
         ))}
-        <Route 
+        <Route
           path="/note/:noteId"
-          render={routeProps =>{
-            const {noteId} = routeProps.match.params;
-            const note = findNote(notes, noteId) || {};
-            const folder = findFolder(folders, note.folderId);
-            return <NoteSidebar {...routeProps} folder={folder} />
-            }}
-        />
+          component={NoteSidebar} />
         <Route path='/add-folder' component={NoteSidebar} />
         <Route path='/add-note' component={NoteSidebar} />
       </>
@@ -53,53 +68,43 @@ class App extends Component {
   }
 
   renderMainRoutes() {
-    const {notes, folders} = this.state;
+    const { notes, folders } = this.state;
     return (
       <>
         {['/', '/folder/:folderId'].map(path => (
-          <Route 
+          <Route
             exact
             key={path}
             path={path}
-            render={routeProps => {
-              const {folderId} = routeProps.match.params;
-              const notesForFolder = getNotesForFolder(
-                notes,
-                folderId
-              );
-              return (
-                <FolderMain
-                  {...routeProps}
-                  notes={notesForFolder}
-                />
-              );
-            }}
+            component={FolderMain}
           />
 
         ))}
         <Route
           path='/note/:noteId'
-          render={routeProps => {
-            const {noteId} = routeProps.match.params;
-            const note = findNote(notes, noteId);
-            return <NotePageMain {...routeProps} note={note} />;
-          }}
+          component={NotePageMain}
         />
       </>
     );
   }
 
   render() {
-    const { notes, folders } = this.state;
-    return (
-      <div className='App'>
-        <nav className="App_sidebar">{this.renderNavRoutes()}</nav>
-        <Header />
-        <main className="App__main">
-          {this.renderMainRoutes()}
-        </main>
-      </div>
+    const contextValue = {
+      folders: this.state.folders,
+      notes: this.state.notes,
+      deleteNote: this.state.handleDeleteNote
+    };
 
+    return (
+      <NotefulContext.Provider value={contextValue}>
+        <div className='App'>
+          <nav className="App_sidebar">{this.renderNavRoutes()}</nav>
+          <Header />
+          <main className="App__main">
+            {this.renderMainRoutes()}
+          </main>
+        </div>
+      </NotefulContext.Provider>
     );
   }
 }

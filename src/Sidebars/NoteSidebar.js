@@ -1,30 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 import CircleButton from '../CircleButton/CircleButton';
+import NotefulContext from '../NotefulContext';
+import { findNote, findFolder } from '../notes-helpers';
 import './NoteSidebar.css';
 
-export default function NoteSidebar(props) {
+class NoteSidebar extends Component {
+    static contextType = NotefulContext;
+
+    static defaultProps = {
+        history: { 
+            goBack: () => { }
+        },
+        match:{
+            params: {}
+        }
+    }
+
+    render(){
+        const { folders, notes } = this.context
+        const { noteId } = this.props.match.params
+        const note = findNote(notes, noteId) || {}
+        const folder = findFolder(folders, note.folderId);
     return(
         <div className="NoteSidebar">
             <CircleButton 
                 tag="button"
                 roles='link'
-                onClick={() => props.history.goBack()}
+                onClick={() => this.props.history.goBack()}
                 className="NoteSidebar__back-button" >
                     {'<'}
                     <br/>
                     Back
                 </CircleButton>
-                {props.folder && (
+                {folder && (
                     <h3 className='NoteSidebar__folder-name'>
-                        {props.folder.name}
+                        {folder.name}
                     </h3>
                 )}
         </div>
     )
+ }
 }
 
-NoteSidebar.defaultProps = {
-    history: {
-        goBack: () => {}
-    }
-}
+export default NoteSidebar
