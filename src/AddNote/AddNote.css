@@ -1,0 +1,43 @@
+.AddNote {
+    padding: 15px;
+}
+
+.AddNote__form {
+    text-align: left;
+}
+
+.AddNote__form input,
+.AddNote__form textarea,
+.AddNote__form select {
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: calc(100% - 16px - 2px);
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+}
+
+.AddNote__form textarea {
+    height: 200px;
+}
+
+.AddNote h2 {
+    font-size: 30px;
+    color: black;
+}
+
+.AddNote__form label {
+    margin-top: 10px;
+    color: black;
+    font-size: 24px;
+}
+
+.AddNote__buttons {
+    text-align: right;
+    margin-right: 15px;
+}
+
+.AddNote__error p {
+    color: red;
+}

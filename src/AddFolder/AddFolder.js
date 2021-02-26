@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NotefulContext from '../NotefulContext';
 import { getNewId } from '../notes-helpers';
 import config from '../config';
+import './AddFolder.css';
 
 class AddFolder extends Component {
     static contextType = NotefulContext;

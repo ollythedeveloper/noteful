@@ -1,0 +1,37 @@
+.AddFolder {
+    padding: 15px;
+}
+
+.AddFolder__form {
+    text-align: left;
+}
+
+.AddFolder__form input {
+    display: block;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: calc(100% - 16px - 2px);
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+}
+
+.AddFolder__form label {
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.AddFolder h2 {
+    font-size: 30px;
+}
+
+.AddFolder__buttons {
+    text-align: right;
+    margin-right: 15px;
+}
+
+.AddFolder__error p {
+    color: red;
+    margin-bottom: 5px;
+}

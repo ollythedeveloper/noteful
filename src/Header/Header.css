@@ -11,3 +11,7 @@
 .App__header a {
     color: #bdbdbd;
 }
+
+.App__header h1 {
+    font-size: 40px;
+}

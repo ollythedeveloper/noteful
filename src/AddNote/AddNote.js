@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NotefulContext from '../NotefulContext';
 import { getNewId } from '../notes-helpers';
 import config from '../config';
+import './AddNote.css';
 
 class AddNote extends Component {
     static contextType = NotefulContext;
