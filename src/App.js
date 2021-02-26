@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Header from './Header/Header';
-import FolderSidebar from './Sidebars/FolderSidebar';
-import NoteSidebar from './Sidebars/NoteSidebar';
-import FolderMain from './MainPages/FolderMain';
-import NotePageMain from './MainPages/NotePageMain';
+import FolderSidebar from './FolderSidebar/FolderSidebar';
+import NoteSidebar from './NoteSidebar/NoteSidebar';
+import FolderMain from './FolderMain/FolderMain';
+import NotePageMain from './NotePageMain/NotePageMain';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
 import NotefulContext from './NotefulContext';
@@ -64,7 +64,7 @@ class App extends Component {
     const { notes, folders } = this.state;
     return (
       <>
-        {['/', '/folder/:folderId'].map(path => (
+        {['/', '/folder/:folderId', '/add-note'].map(path => (
           <Route
             exact
             key={path}
@@ -76,7 +76,7 @@ class App extends Component {
           path="/note/:noteId"
           component={NoteSidebar} />
         <Route path='/add-folder' component={AddFolder} />
-        <Route path='/add-note' component={AddNote} />
+        {/* <Route path='/add-note' component={AddNote} /> */}
       </>
     )
   }
@@ -98,10 +98,10 @@ class App extends Component {
           path='/note/:noteId'
           component={NotePageMain}
         />
-        {/* <Route
+        <Route
           path='/add-note'
           component={AddNote}
-          /> */}
+          />
       </>
     );
   }

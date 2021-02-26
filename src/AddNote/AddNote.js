@@ -97,6 +97,7 @@ class AddNote extends Component {
                     </div>
                     <div>
                         <label htmlFor='folder'>Select a folder:</label>
+                        {' '}
                         <select
                             id='folder'
                             name='folder'
