@@ -5,6 +5,8 @@ import FolderSidebar from './Sidebars/FolderSidebar';
 import NoteSidebar from './Sidebars/NoteSidebar';
 import FolderMain from './MainPages/FolderMain';
 import NotePageMain from './MainPages/NotePageMain';
+import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
 import NotefulContext from './NotefulContext';
 import config from './config';
 // import { getNotesForFolder, findNote, findFolder } from './notes-helpers';
@@ -24,6 +26,18 @@ class App extends Component {
       notes: newNotes
     });
   };
+
+  handleAddFolder = folder => {
+    this.setState({
+      folders: [...this.state.folders, folder]
+    })
+  }
+
+  handleAddNote = note => {
+    this.setState({
+      notes: [...this.state.notes, note]
+    })
+  }
 
   componentDidMount() {
     Promise.all([
@@ -61,8 +75,8 @@ class App extends Component {
         <Route
           path="/note/:noteId"
           component={NoteSidebar} />
-        <Route path='/add-folder' component={NoteSidebar} />
-        <Route path='/add-note' component={NoteSidebar} />
+        <Route path='/add-folder' component={AddFolder} />
+        <Route path='/add-note' component={AddNote} />
       </>
     )
   }
@@ -84,6 +98,10 @@ class App extends Component {
           path='/note/:noteId'
           component={NotePageMain}
         />
+        {/* <Route
+          path='/add-note'
+          component={AddNote}
+          /> */}
       </>
     );
   }
@@ -92,7 +110,9 @@ class App extends Component {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
-      deleteNote: this.state.handleDeleteNote
+      deleteNote: this.handleDeleteNote,
+      addNote: this.handleAddNote,
+      addFolder: this.handleAddFolder
     };
 
     return (
