@@ -9,6 +9,7 @@ import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
 import NotefulContext from './NotefulContext';
 import config from './config';
+import NotefulError from './NotefulError';
 // import { getNotesForFolder, findNote, findFolder } from './notes-helpers';
 import './App.css';
 
@@ -118,11 +119,18 @@ class App extends Component {
     return (
       <NotefulContext.Provider value={contextValue}>
         <div className='App'>
+          <NotefulError>
           <nav className="App_sidebar">{this.renderNavRoutes()}</nav>
-          <Header />
-          <main className="App__main">
-            {this.renderMainRoutes()}
-          </main>
+          </NotefulError>
+
+          <NotefulError>
+            <Header />
+          </NotefulError>
+
+          <NotefulError>
+          <main className="App__main">{this.renderMainRoutes()}</main>
+          </NotefulError>
+          
         </div>
       </NotefulContext.Provider>
     );
