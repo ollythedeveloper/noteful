@@ -94,6 +94,7 @@ class AddNote extends Component {
                         <textarea
                             name='content'
                             id='content'
+                            required
                         />
                     </div>
                     <div>

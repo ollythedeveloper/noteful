@@ -2,12 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import config from '../config';
 import NotefulContext from '../NotefulContext';
-import './Note.css'
+import PropTypes from 'prop-types';
+import './Note.css';
 
 export default class Note extends React.Component {
-    static defaultProps = {
-        onDeleteNote: () => { }
-    }
+    // static defaultProps = {
+    //     onDeleteNote: () => { }
+    // }
 
     static contextType = NotefulContext;
 
@@ -65,4 +66,15 @@ export default class Note extends React.Component {
 
         )
     }
+}
+
+Note.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    modified: PropTypes.string,
+    onDeleteNote: PropTypes.func
+}
+
+Note.defaultProps = {
+    onDeleteNote: () => {}
 }
