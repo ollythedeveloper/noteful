@@ -103,9 +103,8 @@ class AddNote extends Component {
                         <select
                             id='folder'
                             name='folder'
-                            // onChange={e => this.changeSelection(e.target.value)}
                             required>
-                            <option value='None'>Select one...</option>
+                            <option value=''>Select one...</option>
                             {foldOpts}
                         </select>  
                     </div>
