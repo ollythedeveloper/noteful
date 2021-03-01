@@ -41,3 +41,8 @@
 .AddNote__error p {
     color: red;
 }
+
+.requiredField {
+    color: #fff;
+    font-size: 25px;
+}

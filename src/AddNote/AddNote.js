@@ -22,7 +22,7 @@ class AddNote extends Component {
             folderId: folder.value,
             content: content.value
         }
-        this.setState({error: null})
+        this.setState({ error: null })
         fetch(config.NOTE_URL, {
             method: 'POST',
             body: JSON.stringify(note),
@@ -30,25 +30,25 @@ class AddNote extends Component {
                 'content-type': 'application/json',
             }
         })
-        .then(res => {
-            if(!res.ok){
-                //get error message
-                return res.json().then(error => {
-                    //throw it
-                    throw error
-                })
-            }
-            return res.json()
-        })
-        .then(data => {
-            name.value = ''
-            content.value= ''
-            this.context.addNote(data)
-            this.props.history.push('/')
-        })
-        .catch(error => {
-            this.setState({error})
-        })
+            .then(res => {
+                if (!res.ok) {
+                    //get error message
+                    return res.json().then(error => {
+                        //throw it
+                        throw error
+                    })
+                }
+                return res.json()
+            })
+            .then(data => {
+                name.value = ''
+                content.value = ''
+                this.context.addNote(data)
+                this.props.history.push('/')
+            })
+            .catch(error => {
+                this.setState({ error })
+            })
     }
 
     handleClickCancel = () => {
@@ -75,38 +75,45 @@ class AddNote extends Component {
                     </div>
                     <div>
                         <label htmlFor='name'>
-                            Name *
-                         {' '}
+                            Name:
+                            {' '}
+                            <span className="requiredField">*</span>
                         </label>
                         <input
+                            required
                             type='text'
                             name='name'
                             id='name'
                             placeholder='Name of note'
-                            required
+                            aria-label='Name'
+                            aria-required='true'
                         />
                     </div>
                     <div>
                         <label htmlFor='content'>
-                            Content *
+                            Content: 
                          {' '}
+                         <span className="requiredField">*</span>
                         </label>
                         <textarea
                             name='content'
                             id='content'
+                            aria-required='true'
                             required
                         />
                     </div>
                     <div>
                         <label htmlFor='folder'>Select a folder:</label>
                         {' '}
+                        <span className="requiredField">*</span>
                         <select
                             id='folder'
                             name='folder'
+                            aria-required='true'
                             required>
                             <option value=''>Select one...</option>
                             {foldOpts}
-                        </select>  
+                        </select>
                     </div>
                     <div className='AddNote__buttons'>
                         <button type='button' onClick={this.handleClickCancel}>

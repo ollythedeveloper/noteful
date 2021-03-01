@@ -13,9 +13,9 @@
     --note-button-height: 32px;
     background-color: #663399;
     border: 0;
-    color: #bdbcbc;
+    color: yellow;
     float: right;
-    font-size: 12px;
+    font-size: 20px;
     height: var(--note-button-height);
     position: relative;
     top: calc((var(--note-button-height) + 32px) * -1);

@@ -66,14 +66,16 @@ class AddFolder extends Component {
                     </div>
                     <div>
                         <label htmlFor='name'>
-                            Folder name *
+                            Folder name:
                             {' '}
+                            <span className="requiredField">*</span>
                         </label>
                         <input
                             type='text'
                             name='name'
                             id='name'
                             placeholder='Name the new folder'
+                            aria-required='true'
                             required
                         />
                     </div>
