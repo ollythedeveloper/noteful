@@ -21,7 +21,6 @@ class FolderMain extends Component {
         const { folderId } = this.props.match.params
         const notesForFolder = getNotesForFolder(notes, folderId)
 
-
     return (
             <section className="FolderMain">
             <ul>

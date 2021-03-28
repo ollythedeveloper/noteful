@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NotefulContext from '../NotefulContext';
-import { getNewId } from '../notes-helpers';
+// import { getNewId } from '../notes-helpers';
 import config from '../config';
 import './AddFolder.css';
 
@@ -15,9 +15,9 @@ class AddFolder extends Component {
         e.preventDefault()
         //get the form field from the event
         const {name} = e.target
-        const newId = getNewId()
+        // const newId = getNewId()
         const folder = {
-            id: newId,
+            // id: newId,
             name: name.value,
         }
         this.setState({ error: null })

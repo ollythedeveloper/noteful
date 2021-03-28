@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NotefulContext from '../NotefulContext';
-import { getNewId } from '../notes-helpers';
+// import { getNewId } from '../notes-helpers';
 import config from '../config';
 import './AddNote.css';
 
@@ -14,12 +14,12 @@ class AddNote extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const { name, folder, content } = e.target
-        const newId = getNewId()
+        // const newId = getNewId()
         const note = {
-            id: newId,
+            // id: newId,
             name: name.value,
-            modified: 'Today',
-            folderId: folder.value,
+            // modified: 'Today',
+            folderid: folder.value,
             content: content.value
         }
         this.setState({ error: null })

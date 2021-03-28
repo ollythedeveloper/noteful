@@ -21,6 +21,7 @@ class NotePageMain extends Component {
         const notes = this.context.notes
         const { noteId } = this.props.match.params
         const note = findNote(notes, noteId) || { content: ''}
+        console.log(noteId)
     
     return (
         <section className='NotePageMain'>
