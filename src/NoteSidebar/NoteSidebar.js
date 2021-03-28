@@ -17,7 +17,7 @@ class NoteSidebar extends Component {
     }
 
     render(){
-        const { folders, notes } = this.context
+        const { folders=[], notes=[] } = this.context
         const { noteId } = this.props.match.params
         const note = findNote(notes, noteId) || {}
         const folder = findFolder(folders, note.folderid);

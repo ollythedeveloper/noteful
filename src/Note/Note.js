@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import './Note.css';
 
 export default class Note extends React.Component {
-    // static defaultProps = {
-    //     onDeleteNote: () => { }
-    // }
+    static defaultProps = {
+        onDeleteNote: () => { }
+    }
 
     static contextType = NotefulContext;
 
