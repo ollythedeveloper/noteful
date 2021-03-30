@@ -20,8 +20,8 @@ class NotePageMain extends Component {
     render(){
         const { notes=[] } = this.context
         const { noteId } = this.props.match.params
-        const note = findNote(notes, noteId) || { content: ''}
-    
+        const note = findNote(notes, parseInt(noteId)) || { content: ''}
+
     return (
         <section className='NotePageMain'>
             <Note
