@@ -14,7 +14,7 @@ class NotePageMain extends Component {
     static contextType = NotefulContext
 
     handleDeleteNote = noteId => {
-        this.props.history.push(`/`)
+        this.props.history.push('/')
     }
 
     render(){
